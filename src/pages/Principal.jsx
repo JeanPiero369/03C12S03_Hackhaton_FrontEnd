@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { jwtDecode } from 'jwt-decode';
-import { getRoleBasedOnToken, getCart } from '../service/api.js'; // Asegúrate de que las rutas sean correctas
+import { getCart } from '../service/api.js'; // Asegúrate de que las rutas sean correctas
 import Item from '../components/Item.jsx';
 
 export const Principal = () => {
