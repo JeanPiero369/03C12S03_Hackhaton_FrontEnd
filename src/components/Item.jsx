@@ -54,7 +54,7 @@ const Item = ({ userRole }) => {
     return (
         <div>
             <h1>Administrar Items</h1>
-            <form>
+            <form style={{ display: 'flex', flexDirection: 'column', gap: '1rem', maxWidth: '400px' }}>
                 <input
                     type="text"
                     name="itemId"
@@ -108,9 +108,11 @@ const Item = ({ userRole }) => {
                     onChange={handleChange}
                     placeholder="Título"
                 />
-                <button type="button" onClick={handleCreate}>Crear Item</button>
-                <button type="button" onClick={handleEdit}>Editar Item</button>
-                <button type="button" onClick={handleDelete}>Eliminar Item</button>
+                <div style={{ display: 'flex', gap: '1rem' }}>
+                    <button type="button" onClick={handleCreate}>Crear Item</button>
+                    <button type="button" onClick={handleEdit}>Editar Item</button>
+                    <button type="button" onClick={handleDelete}>Eliminar Item</button>
+                </div>
             </form>
         </div>
     );

@@ -23,24 +23,11 @@ export const fetchRegister = async (body) => {
 
 };
 
-
-// Login de usuario
-export const fetchLogin = async (body) => {
-    try {
-        const response = await axios.post(`${BACKEND_URL}auth/login`, body);
-        localStorage.setItem('token', response.data.token);
-        return response.data;
-    } catch (error) {
-        console.error('Error logging in user:', error);
-        throw error;
-    }
-};
-
-// Crear un item
+// Crea un item
 export const createItem = async (body) => {
     try {
         const token = localStorage.getItem('token');
-        const response = await axios.post(`${BACKEND_URL}items`, body, {
+        const response = await axios.post(`${BACKEND_URL}item`, body, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
@@ -52,18 +39,16 @@ export const createItem = async (body) => {
     }
 };
 
-// Editar un item
-export const editItem = async (body) => {
+
+
+// Login de usuario
+export const fetchLogin = async (body) => {
     try {
-        const token = localStorage.getItem('token');
-        const response = await axios.put(`${BACKEND_URL}items`, body, {
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
-        });
+        const response = await axios.post(`${BACKEND_URL}auth/login`, body);
+        localStorage.setItem('token', response.data.token);
         return response.data;
     } catch (error) {
-        console.error('Error editing item:', error);
+        console.error('Error logging in user:', error);
         throw error;
     }
 };
@@ -80,6 +65,22 @@ export const deleteItem = async (itemId) => {
         return response.data;
     } catch (error) {
         console.error('Error deleting item:', error);
+        throw error;
+    }
+};
+
+// Editar un item
+export const editItem = async (body) => {
+    try {
+        const token = localStorage.getItem('token');
+        const response = await axios.put(`${BACKEND_URL}item`, body, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        });
+        return response.data;
+    } catch (error) {
+        console.error('Error editing item:', error);
         throw error;
     }
 };
