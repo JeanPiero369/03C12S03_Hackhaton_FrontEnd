@@ -11,8 +11,8 @@ export const LoginForm = () => {
 
     const navigate = useNavigate();
 
-    const handleChangeInput = (event) => {
-        const { name, value } = event.target;
+    const handleChangeInput = (data2) => {
+        const { name, value } =data2;
         setData({
             ...data,
             [name]: value
