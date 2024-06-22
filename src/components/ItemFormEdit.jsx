@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { createItem, editItem, deleteItem } from '../service/api.js'; // Ajusta la ruta según sea necesario
+import { createItem, editItem, deleteItem } from '../service/api.js';
+import {InputForm} from "./InputForm.jsx"; // Ajusta la ruta según sea necesario
 
-const Item = ({ userRole }) => {
+const ItemFormEdit = ({ userRole }) => {
     const [itemData, setItemData] = useState({
         itemId: "",
         boughtInLastMonth: 0,
@@ -50,6 +51,7 @@ const Item = ({ userRole }) => {
     if (userRole !== 'Admin') {
         return <p>No tienes permiso para acceder a esta sección.</p>;
     }
+
 
     return (
         <div>
@@ -118,4 +120,4 @@ const Item = ({ userRole }) => {
     );
 };
 
-export default Item;
+export default ItemFormEdit;

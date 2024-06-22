@@ -5,7 +5,7 @@ import { Register } from "./pages/Register.jsx";
 import { NotFound } from "./pages/NotFound.jsx";
 import { Navbar } from "./layout/Navbar.jsx";
 import { Principal } from "./pages/Principal.jsx";
-import { ShoppingCart } from "./components/Cart.jsx"
+import { ShoppingCart } from "./pages/Cart.jsx"
 
 function App() {
   return (

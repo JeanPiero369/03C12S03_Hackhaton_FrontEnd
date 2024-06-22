@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { fetchLogin } from "../service/api"; // Asegúrate de ajustar la ruta según sea necesario
+import {fetchLogin, getRoleBasedOnToken} from "../service/api"; // Asegúrate de ajustar la ruta según sea necesario
 import { InputForm } from "./InputForm.jsx";
 
 export const LoginForm = () => {
@@ -23,6 +23,7 @@ export const LoginForm = () => {
         event.preventDefault();
         try {
             await fetchLogin(data);
+            localStorage.setItem('role', getRoleBasedOnToken());
             navigate('/principal');
         } catch (error) {
             console.error('Error en el inicio de sesión:', error);
