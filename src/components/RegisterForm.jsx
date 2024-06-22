@@ -1,48 +1,46 @@
-import {InputForm} from "./InputForm.jsx";
-import {useState} from "react";
-import {fetchLogin} from "../service/api.js";
-import {useNavigate} from "react-router-dom";
+import { useState } from "react";
+import { fetchRegister } from "../service/api.js" // Asegúrate de ajustar la ruta según sea necesario
+import { InputForm } from "./InputForm.jsx";
 
-export const RegisterForm=()=>{
-    const [data,setData]=useState({
-        username : "aa",
-        password:"",
-        email:""
+export const RegisterForm = () => {
+    const [data, setData] = useState({
+        username: "",
+        password: "",
+        role: "Cliente" // O "Admin" dependiendo del rol que desees
     });
 
-    const navigate = useNavigate();
-
-    const handleChangeInput=(data2)=>{
-        const { name, value } = data2;
-        console.error(data2);
+    const handleChangeInput = (event) => {
+        const { name, value } = event.target;
         setData({
             ...data,
             [name]: value
         });
-    }
+    };
 
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
-            await fetchLogin(data);
-            navigate('/principal');
+            const response = await fetchRegister(data);
+            console.log("Registro exitoso:", response);
+            // Maneja la respuesta exitosa, redirección, etc.
         } catch (error) {
-            navigate('/auth/login');
+            console.error("Error en el registro:", error);
+            // Maneja el error, muestra un mensaje, etc.
         }
     };
 
-    return<>
+    return (
         <form onSubmit={handleSubmit}>
-            <InputForm initial={data.username} label="Username" name="username" onDataChange={handleChangeInput}/>
-            <InputForm initial={data.password} label="Password" name="password" onDataChange={handleChangeInput}/>
-            <InputForm initial={data.email} label="Email" name="email" onDataChange={handleChangeInput}/>
-            <button
-                id="loginSubmit"
-                className="bg-primary text-white font-bold py-2 px-4 rounded-full w-full mb-4"
-                type="submit">
-                Registrar
-            </button>
+            <InputForm initial={data.username} label="Username" name="username" onDataChange={handleChangeInput} />
+            <InputForm initial={data.password} label="Password" name="password" onDataChange={handleChangeInput} />
+            <label>
+                Rol:
+                <select name="role" value={data.role} onChange={handleChangeInput}>
+                    <option value="Cliente">Cliente</option>
+                    <option value="Admin">Admin</option>
+                </select>
+            </label>
+            <button type="submit">Registrarse</button>
         </form>
-
-    </>
-}
+    );
+};

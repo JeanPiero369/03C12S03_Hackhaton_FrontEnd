@@ -1,5 +1,5 @@
 import axios from 'axios';
-import jwtDecode from 'jwt-decode';
+import { jwtDecode } from 'jwt-decode';
 
 const BACKEND_URL = 'https://cepnq6rjbk.execute-api.us-east-1.amazonaws.com/';
 
@@ -22,6 +22,7 @@ export const fetchRegister = async (body) => {
     }
 
 };
+
 
 // Login de usuario
 export const fetchLogin = async (body) => {
