@@ -1,6 +1,17 @@
 // eslint-disable-next-line react/prop-types
+import {useNavigate} from "react-router-dom";
+import {useEffect} from "react";
+
 export const Item=({asin,boughtInLastMonth,isBestSeller,price,imgUrl,stars,title})=>{
-    return <div className="max-w-sm rounded overflow-hidden shadow-lg">
+
+
+    const navigate=useNavigate();
+
+    const handleClick=()=>{
+        navigate("/item");
+    }
+
+    return <div className="max-w-sm rounded overflow-hidden shadow-lg" onClick={handleClick}>
         <img src={imgUrl} alt={title} className="w-full"/>
         <div className="px-6 py-4">
             <div className="font-bold text-xl mb-2">{title}</div>

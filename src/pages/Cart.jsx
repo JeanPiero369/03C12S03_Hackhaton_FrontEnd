@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { addItemToCart, removeItemFromCart, getCart } from '../service/api.js';
+import {Item} from "../components/Item.jsx";
+import {Button} from "../components/Button.jsx";
 
 export const ShoppingCart = ({ userId }) => {
     const [cartItems, setCartItems] = useState([]);
+    
 
     useEffect(() => {
         const fetchCart = async () => {
@@ -42,15 +45,13 @@ export const ShoppingCart = ({ userId }) => {
     return (
         <div>
             <h1>Carrito de Compras</h1>
-            <ul>
-                {cartItems.map(item => (
-                    <li key={item.itemId}>
-                        {item.title} - {item.quantity}
-                        <button onClick={() => handleAddItem(item.itemId)}>Agregar</button>
-                        <button onClick={() => handleRemoveItem(item.itemId)}>Eliminar</button>
-                    </li>
-                ))}
-            </ul>
+            <Item
+                key={10}
+                price={10}
+                imgUrl=""
+                title="A Pair of 1/2 Wave Receiver Antennas for Shure UHF-R,ULX,SLX,QLX-D,ULX-D,BLX4R Receivers"
+            />
+            <Button text="Comprar" to="/principal"/>
         </div>
     );
 };
