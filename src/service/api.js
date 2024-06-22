@@ -134,10 +134,14 @@ export const buyCart = async (body) => {
 };
 
 // Agregar un item al carrito
-export const addItemToCart = async (body) => {
+export const addItemToCart = async (itemId, userId) => {
     try {
         const token = localStorage.getItem('token');
-        const response = await axios.post(`${BACKEND_URL}cart`, body, {
+        const decodedToken = jwtDecode(token);
+        if (decodedToken.role !== 'Cliente') {
+            throw new Error('No tienes permiso para realizar esta acción');
+        }
+        const response = await axios.put(`${BACKEND_URL}cart`, { itemId, userId }, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
@@ -150,14 +154,18 @@ export const addItemToCart = async (body) => {
 };
 
 // Eliminar un item del carrito
-export const removeItemFromCart = async (body) => {
+export const removeItemFromCart = async (itemId, userId) => {
     try {
         const token = localStorage.getItem('token');
+        const decodedToken = jwtDecode(token);
+        if (decodedToken.role !== 'Cliente') {
+            throw new Error('No tienes permiso para realizar esta acción');
+        }
         const response = await axios.delete(`${BACKEND_URL}cart`, {
             headers: {
                 Authorization: `Bearer ${token}`
             },
-            data: body
+            data: { itemId, userId }
         });
         return response.data;
     } catch (error) {
@@ -166,10 +174,15 @@ export const removeItemFromCart = async (body) => {
     }
 };
 
+
 // Obtener el carrito de un usuario
 export const getCart = async (userId) => {
     try {
         const token = localStorage.getItem('token');
+        const decodedToken = jwtDecode(token);
+        if (decodedToken.role !== 'Cliente') {
+            throw new Error('No tienes permiso para realizar esta acción');
+        }
         const response = await axios.get(`${BACKEND_URL}cart/${userId}`, {
             headers: {
                 Authorization: `Bearer ${token}`
@@ -181,3 +194,4 @@ export const getCart = async (userId) => {
         throw error;
     }
 };
+
