@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { fetchRegister } from "../service/api.js";
+import { fetchRegister } from "../service/api.js" // Asegúrate de ajustar la ruta según sea necesario
 import { InputForm } from "./InputForm.jsx";
 
 export const RegisterForm = () => {
