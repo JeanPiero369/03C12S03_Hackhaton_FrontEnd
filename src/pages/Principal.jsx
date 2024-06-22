@@ -1,8 +1,22 @@
-import {ListItem} from "../components/ListItem.jsx";
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import { jwtDecode } from 'jwt-decode';
+import { getRoleBasedOnToken, getCart } from '../service/api.js'; // Asegúrate de que las rutas sean correctas
+import ItemFormEdit from '../components/ItemFormEdit.jsx';
+import ListItem from "../components/ListItem.jsx";
 
-export const Principal =()=>{
+export const Principal = () => {
+    const navigate = useNavigate();
+    const role=getRoleBasedOnToken();
 
-    return <>
-        <ListItem/>
-    </>
-}
+    return (
+        <div>
+            {role === 'Admin' ? (
+                <ItemFormEdit userRole={role} />
+            ) : (
+                <ListItem/>
+            )}
+        </div>
+    );
+};
