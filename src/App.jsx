@@ -5,6 +5,7 @@ import {Login} from "./pages/Login.jsx";
 import {Register} from "./pages/Register.jsx";
 import {NotFound} from "./pages/NotFound.jsx";
 import {Navbar} from "./layout/Navbar.jsx";
+import {Principal} from "./pages/Principal.jsx";
 
 function App() {
 
@@ -16,6 +17,7 @@ function App() {
                 <Route path="/" element={<Navigate to="/auth/login"/>} />
                 <Route path="/auth/login" element={<Login/>} />
                 <Route path="/auth/register" element={<Register/>} />
+                <Route path="/principal" element={<Principal/>} />
                 <Route path="*" element={<NotFound/>} />
             </Routes>
         </BrowserRouter>

@@ -20,6 +20,7 @@ export const fetchRegister = async (body) => {
         console.error('Error registering user:', error);
         throw error;
     }
+
 };
 
 // Login de usuario

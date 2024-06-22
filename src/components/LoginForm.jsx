@@ -23,7 +23,7 @@ export const LoginForm=()=>{
         event.preventDefault();
         try {
             await fetchLogin(data);
-            navigate('/dashboard');
+            navigate('/principal');
         } catch (error) {
             navigate('/auth/login');
         }
